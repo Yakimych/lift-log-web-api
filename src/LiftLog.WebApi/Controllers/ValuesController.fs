@@ -8,7 +8,7 @@ open Microsoft.AspNetCore.Mvc
 
 [<Route("api/[controller]")>]
 [<ApiController>]
-type ValuesController () =
+type LiftsController () =
     inherit ControllerBase()
 
     [<HttpGet>]
