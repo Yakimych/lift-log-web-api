@@ -1,4 +1,4 @@
-module LiftLog.WebApi.Domain
+module LiftLog.Models
 
 open System
 
@@ -7,7 +7,8 @@ type kg
 
 type Rep = {
     Number: int
-    Rpe: decimal option
+    // TODO: Make optional and fix serialization (OptionConverter)
+    Rpe: decimal
 }
 
 type LiftLogEntry = {
@@ -15,4 +16,8 @@ type LiftLogEntry = {
     Date: DateTime 
     Weigth: decimal<kg>
     Reps: Rep list
+}
+
+type LiftLog = {
+    Entries: LiftLogEntry list
 }
