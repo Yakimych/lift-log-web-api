@@ -4,7 +4,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Models.fs" />
+    <Compile Include="BoardService.fs" />
     <Compile Include="LiftLogService.fs" />
+    <Compile Include="BoardsController.fs" />
     <Compile Include="LiftsController.fs" />
     <Compile Include="Startup.fs" />
     <Compile Include="Program.fs" />

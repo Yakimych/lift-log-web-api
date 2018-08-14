@@ -19,5 +19,21 @@ type LiftLogEntry = {
 }
 
 type LiftLog = {
-    Entries: LiftLogEntry list
+    Name: string
+    mutable Entries: LiftLogEntry list
+}
+
+type Board = {
+    Id: string
+    Name: string
+    LiftLog: LiftLog
+}
+
+type BoardCreateModel = {
+    Name: string
+    PreferredBoardId: string
+}
+
+type BoardCreateResult = {
+    CreatedBoardId: string
 }
