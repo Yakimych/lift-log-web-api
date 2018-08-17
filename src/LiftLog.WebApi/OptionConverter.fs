@@ -3,7 +3,6 @@ namespace LiftLog.WebApi.Converters
 open System
 open Microsoft.FSharp.Reflection
 open Newtonsoft.Json
-open Newtonsoft.Json.Converters
 
 type OptionConverter() =
     inherit JsonConverter()

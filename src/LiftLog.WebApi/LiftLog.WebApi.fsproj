@@ -3,8 +3,10 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="UtilFunctions.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="MongoDbModels.fs" />
+    <Compile Include="Mapping.fs" />
     <Compile Include="LiftLogService.fs" />
     <Compile Include="LiftLogController.fs" />
     <Compile Include="OptionConverter.fs" />

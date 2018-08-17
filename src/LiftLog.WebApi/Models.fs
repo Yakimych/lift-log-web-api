@@ -14,7 +14,7 @@ type LiftLogEntry = {
     Name: string
     Date: DateTime 
     WeightLifted: decimal<kg>
-    Reps: Rep list
+    Reps: Rep seq
 }
 
 type LiftLog = {
@@ -23,7 +23,6 @@ type LiftLog = {
     Entries: LiftLogEntry seq
 }
 
-// API only
 type LogCreateModel = {
     Name: string
     Title: string
