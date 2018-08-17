@@ -7,33 +7,28 @@ type kg
 
 type Rep = {
     Number: int
-    // TODO: Make optional and fix serialization (OptionConverter)
-    Rpe: decimal
+    Rpe: decimal option
 }
 
 type LiftLogEntry = {
     Name: string
     Date: DateTime 
-    Weigth: decimal<kg>
+    WeightLifted: decimal<kg>
     Reps: Rep list
 }
 
 type LiftLog = {
+    Title: string
     Name: string
-    mutable Entries: LiftLogEntry list
+    Entries: LiftLogEntry seq
 }
 
-type Board = {
+// API only
+type LogCreateModel = {
+    Name: string
+    Title: string
+}
+
+type LogCreateResult = {
     Id: string
-    Name: string
-    LiftLog: LiftLog
-}
-
-type BoardCreateModel = {
-    Name: string
-    PreferredBoardId: string
-}
-
-type BoardCreateResult = {
-    CreatedBoardId: string
 }
