@@ -7,6 +7,7 @@ open Microsoft.Extensions.Configuration
 open Microsoft.Extensions.DependencyInjection
 open Swashbuckle.AspNetCore.Swagger
 open LiftLog.WebApi.Converters
+open Microsoft.AspNetCore.HttpOverrides
 
 type Startup private () =
     new (configuration: IConfiguration) as this =
@@ -25,6 +26,11 @@ type Startup private () =
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
     member this.Configure(app: IApplicationBuilder, env: IHostingEnvironment) =
+        app.UseForwardedHeaders(
+                ForwardedHeadersOptions(
+                    ForwardedHeaders = (ForwardedHeaders.XForwardedFor ||| ForwardedHeaders.XForwardedProto)))
+            |> ignore
+        
         if (env.IsDevelopment()) then
             app.UseDeveloperExceptionPage() |> ignore
         else
