@@ -39,6 +39,7 @@ type Startup private () =
         app.UseSwagger() |> ignore
         app.UseSwaggerUI(fun c -> c.SwaggerEndpoint("/swagger/v1/swagger.json", "Lifts API V1")) |> ignore
 
+        app.UseCors(fun builder -> builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod() |> ignore) |> ignore
         app.UseMvc() |> ignore
 
     member val Configuration : IConfiguration = null with get, set
