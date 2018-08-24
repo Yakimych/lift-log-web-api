@@ -22,6 +22,7 @@ type Startup private () =
             AddJsonOptions(fun options -> options.SerializerSettings.Converters.Add(new OptionConverter())).
             SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
             |> ignore
+        services.AddSingleton<IConfiguration>(this.Configuration) |> ignore
         services.AddSwaggerGen(fun c -> c.SwaggerDoc("v1", new Info(Title = "Lifts API", Version = "v1"))) |> ignore
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

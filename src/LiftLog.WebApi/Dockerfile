@@ -1,7 +1,7 @@
 FROM microsoft/dotnet:sdk AS build-env
 WORKDIR /app
 
-# Copy csproj and restore as distinct layers
+# Copy fsproj and restore as distinct layers
 COPY *.fsproj ./
 RUN dotnet restore
 

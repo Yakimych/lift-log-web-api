@@ -6,6 +6,7 @@
     <Compile Include="UtilFunctions.fs" />
     <Compile Include="Models.fs" />
     <Compile Include="MongoDbModels.fs" />
+    <Compile Include="MongoDbSettings.fs" />
     <Compile Include="Mapping.fs" />
     <Compile Include="LiftLogService.fs" />
     <Compile Include="LiftLogController.fs" />
