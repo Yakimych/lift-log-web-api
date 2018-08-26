@@ -5,8 +5,8 @@ open System
 [<Measure>]
 type kg
 
-type Rep = {
-    Number: int
+type Set = {
+    NumberOfReps: int
     Rpe: decimal option
 }
 
@@ -14,7 +14,7 @@ type LiftLogEntry = {
     Name: string
     Date: DateTime 
     WeightLifted: decimal<kg>
-    Reps: Rep seq
+    Sets: Set seq
 }
 
 type LiftLog = {

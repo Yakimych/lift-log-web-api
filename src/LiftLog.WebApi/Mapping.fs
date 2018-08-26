@@ -11,25 +11,25 @@ let toMongoDbObject (logCreateModel: LogCreateModel) =
       Name = logCreateModel.Name;
       Title = logCreateModel.Title; Entries = [] }
 
-let toRep (repObject: RepObject): Rep =
-    { Number = repObject.Number;
-      Rpe = repObject.Rpe |> nullableToOption }
+let toSet (setObject: SetObject): Set =
+    { NumberOfReps = setObject.NumberOfReps;
+      Rpe = setObject.Rpe |> nullableToOption }
     
-let toRepObject (rep: Rep): RepObject =
-    { Number = rep.Number;
-     Rpe = rep.Rpe |> optionToNullable }
+let toSetObject (set: Set): SetObject =
+    { NumberOfReps = set.NumberOfReps;
+     Rpe = set.Rpe |> optionToNullable }
     
 let toLiftLogEntry (liftLogEntryObject: LiftLogEntryObject): LiftLogEntry =
     { Name = liftLogEntryObject.Name;
       Date = liftLogEntryObject.Date;
       WeightLifted = liftLogEntryObject.WeightLifted;
-      Reps = (liftLogEntryObject.Reps) |> Seq.map toRep }
+      Sets = (liftLogEntryObject.Sets) |> Seq.map toSet }
     
 let toLiftLogEntryObject (liftLogEntry: LiftLogEntry): LiftLogEntryObject =
     { Name = liftLogEntry.Name;
       Date = liftLogEntry.Date;
       WeightLifted = liftLogEntry.WeightLifted;
-      Reps = (liftLogEntry.Reps) |> Seq.map toRepObject }
+      Sets = (liftLogEntry.Sets) |> Seq.map toSetObject }
     
 let toLiftLog (liftLogObject: LiftLogObject) =
     { Name = liftLogObject.Name;

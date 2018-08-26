@@ -4,8 +4,8 @@ open System
 open Models
 open MongoDB.Bson
 
-type RepObject = {
-    Number: int
+type SetObject = {
+    NumberOfReps: int
     Rpe: Nullable<decimal>
 }
 
@@ -13,7 +13,7 @@ type LiftLogEntryObject = {
     Name: string
     Date: DateTime 
     WeightLifted: decimal<kg>
-    Reps: RepObject seq
+    Sets: SetObject seq
 }
 
 type LiftLogObject = {
