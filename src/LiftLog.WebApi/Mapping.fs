@@ -23,13 +23,17 @@ let toLiftLogEntry (liftLogEntryObject: LiftLogEntryObject): LiftLogEntry =
     { Name = liftLogEntryObject.Name;
       Date = liftLogEntryObject.Date;
       WeightLifted = liftLogEntryObject.WeightLifted;
-      Sets = (liftLogEntryObject.Sets) |> Seq.map toSet }
+      Sets = (liftLogEntryObject.Sets) |> Seq.map toSet
+      Comment = liftLogEntryObject.Comment
+      Links = liftLogEntryObject.Links }
     
 let toLiftLogEntryObject (liftLogEntry: LiftLogEntry): LiftLogEntryObject =
     { Name = liftLogEntry.Name;
       Date = liftLogEntry.Date;
       WeightLifted = liftLogEntry.WeightLifted;
-      Sets = (liftLogEntry.Sets) |> Seq.map toSetObject }
+      Sets = (liftLogEntry.Sets) |> Seq.map toSetObject
+      Comment = liftLogEntry.Comment
+      Links = liftLogEntry.Links }
     
 let toLiftLog (liftLogObject: LiftLogObject) =
     { Name = liftLogObject.Name;

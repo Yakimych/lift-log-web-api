@@ -14,6 +14,8 @@ type LiftLogEntryObject = {
     Date: DateTime 
     WeightLifted: decimal<kg>
     Sets: SetObject seq
+    Comment: string
+    Links: Link seq
 }
 
 type LiftLogObject = {
