@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lift-log-webapi
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      ll: lift-log-webapi-label
+  template:
+    metadata:
+      labels:
+        ll: lift-log-webapi-label
+    spec:
+      containers:
+        - name: lift-log-image
+          image: lift-log-image
+          imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lift-log-entrypoint
+  namespace: default
+spec:
+  type: NodePort
+  selector:
+    ll: lift-log-webapi-label
+  ports:
+    - port: 80
+      nodePort: 30001
+      # Open localhost:30001 in the browser after running kubectl apply -f manifest.yaml
