@@ -18,7 +18,7 @@ type Startup private () =
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
         services.
-            AddMvc()
+            AddMvc(fun x -> x.EnableEndpointRouting <- false)
             |> ignore
 //            AddJsonOptions(fun options -> options.JsonSerializerOptions.Converters.Add(new OptionConverter())).
 //            SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
