@@ -17,11 +17,11 @@ type Startup private () =
     // This method gets called by the runtime. Use this method to add services to the container.
     member this.ConfigureServices(services: IServiceCollection) =
         // Add framework services.
-        services.
-            AddMvc().
-            AddJsonOptions(fun options -> options.SerializerSettings.Converters.Add(new OptionConverter())).
-            SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
-            |> ignore
+//        services.
+//            AddMvc().
+//            AddJsonOptions(fun options -> options.JsonSerializerOptions.Converters.Add(new OptionConverter())).
+//            SetCompatibilityVersion(CompatibilityVersion.Version_2_1)
+//            |> ignore
         services.AddSingleton<IConfiguration>(this.Configuration) |> ignore
         services.AddSwaggerGen(fun c -> c.SwaggerDoc("v1", new Info(Title = "Lifts API", Version = "v1"))) |> ignore
 
