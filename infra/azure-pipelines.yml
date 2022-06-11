@@ -1,0 +1,59 @@
+trigger:
+  - master
+
+pr: none
+
+pool:
+  vmImage: "windows-latest"
+
+variables:
+  - group: infra_variables
+  - name: solution
+    value: "**/*.sln"
+  - name: buildPlatform
+    value: "Any CPU"
+  - name: buildConfiguration
+    value: "Release"
+
+steps:
+  # - task: UseDotNet@2
+  #   displayName: 'Use .NET 6 Core sdk'
+  #   inputs:
+  #     packageType: 'sdk'
+  #     version: '6.0.x'
+  - task: DotNetCoreCLI@2
+    inputs:
+      command: publish
+      projects: "src/LiftLog.WebApi/LiftLog.WebApi.fsproj"
+      arguments: "-o $(Build.ArtifactStagingDirectory)"
+      zipAfterPublish: true
+
+  - task: TerraformInstaller@0
+    displayName: Install Terraform
+    inputs:
+      terraformVersion: "1.0.3"
+
+  - task: AzureCLI@2
+    name: terraform_init
+    displayName: "terraform init"
+    inputs:
+      failOnStandardError: true
+      azureSubscription: arm-connection
+      scriptType: bash
+      workingDirectory: $(Build.SourcesDirectory)/infra
+      scriptPath: $(Build.SourcesDirectory)/infra/terraform_init.sh
+
+  - task: AzureCLI@2
+    name: terraform_deploy
+    displayName: Build and deploy with Terraform
+    inputs:
+      azureSubscription: arm-connection
+      addSpnToEnvironment: true
+      scriptType: bash
+      workingDirectory: $(Build.SourcesDirectory)/infra
+      scriptPath: $(Build.SourcesDirectory)/infra/deploy.sh
+      arguments: |
+        $(Build.ArtifactStagingDirectory)/LiftLog.WebApi.zip
+        $(SEQ_URL)
+        $(SEQ_API_KEY_LIFT_LOG)
+        $(Build.SourceVersion)
