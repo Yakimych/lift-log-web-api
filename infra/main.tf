@@ -49,7 +49,7 @@ resource "azurerm_resource_group" "liftloggroup" {
 }
 
 resource "azurerm_cosmosdb_account" "cosmosaccount" {
-  name                 = "pscosmosaccount"
+  name                 = "liftlogcosmosaccount"
   location             = azurerm_resource_group.liftloggroup.location
   resource_group_name  = azurerm_resource_group.liftloggroup.name
   kind                 = "MongoDB"
