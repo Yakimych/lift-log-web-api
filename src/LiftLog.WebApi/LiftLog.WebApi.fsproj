@@ -6,12 +6,22 @@
 
   <ItemGroup>
     <Compile Include="WeatherForecast.fs" />
+    <Compile Include="Validation.fs" />
+    <Compile Include="Models.fs" />
+    <Compile Include="MongoDbSettings.fs" />
+    <Compile Include="MongoDbModels.fs" />
+    <Compile Include="UtilFunctions.fs" />
+    <Compile Include="Mapping.fs" />
+    <Compile Include="LiftLogService.fs" />
     <Compile Include="Controllers/WeatherForecastController.fs" />
+    <Compile Include="Controllers\LiftLogController.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="mongocsharpdriver" Version="2.7.0" />
+    <PackageReference Include="MongoDB.FSharp" Version="0.1.0" />
   </ItemGroup>
 
 </Project>
