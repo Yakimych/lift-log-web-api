@@ -5,16 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="WeatherForecast.fs" />
+    <Compile Include="UtilFunctions.fs" />
     <Compile Include="Validation.fs" />
     <Compile Include="Models.fs" />
-    <Compile Include="MongoDbSettings.fs" />
     <Compile Include="MongoDbModels.fs" />
-    <Compile Include="UtilFunctions.fs" />
+    <Compile Include="MongoDbSettings.fs" />
     <Compile Include="Mapping.fs" />
     <Compile Include="LiftLogService.fs" />
-    <Compile Include="Controllers/WeatherForecastController.fs" />
-    <Compile Include="Controllers\LiftLogController.fs" />
+    <Compile Include="LiftLogController.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 
