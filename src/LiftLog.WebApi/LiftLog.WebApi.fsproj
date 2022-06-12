@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="mongocsharpdriver" Version="2.7.0" />
+    <PackageReference Include="mongocsharpdriver" Version="2.8.1" />
     <PackageReference Include="MongoDB.FSharp" Version="0.1.0" />
   </ItemGroup>
 
