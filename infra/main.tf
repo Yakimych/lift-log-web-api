@@ -6,6 +6,10 @@ variable "db_name" {
   default = "LiftLogDb"
 }
 
+variable "frontend_host" {
+  type = string
+}
+
 variable "seq_url" {
   type = string
 }
@@ -154,6 +158,7 @@ resource "azurerm_app_service" "liftlogapp" {
     "MongoDbServer"                        = azurerm_cosmosdb_account.cosmosaccount.connection_strings[0]
     "DatabaseName"                         = var.db_name
     "CollectionName"                       = var.collection_name
+    "FrontendHost"                         = var.frontend_host
     "Serilog__WriteTo__0__Args__serverUrl" = var.seq_url
     "Serilog__WriteTo__0__Args__apiKey"    = var.seq_api_key
   }

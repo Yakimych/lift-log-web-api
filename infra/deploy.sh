@@ -7,9 +7,10 @@ export ARM_SUBSCRIPTION_ID=$(az account show --query id | xargs)
 export ARM_TENANT_ID=$(az account show --query tenantId | xargs)
 
 PUBLISH_FILE=$1
-SEQ_URL=$2
-SEQ_API_KEY=$3
-COMMIT_HASH=$4
+FRONTEND_HOST=$2
+SEQ_URL=$3
+SEQ_API_KEY=$4
+COMMIT_HASH=$5
 
 RESOURCE_GROUP_NAME=tfstate
 STORAGE_ACCOUNT_NAME=tfstateliftlog
@@ -19,6 +20,7 @@ ACCOUNT_KEY=$(az storage account keys list --resource-group $RESOURCE_GROUP_NAME
 export ARM_ACCESS_KEY=$ACCOUNT_KEY
 
 terraform plan \
+    -var "frontend_host=$FRONTEND_HOST" \
     -var "seq_url=$SEQ_URL" \
     -var "seq_api_key=$SEQ_API_KEY" \
     -var "commit_hash=$COMMIT_HASH" \
