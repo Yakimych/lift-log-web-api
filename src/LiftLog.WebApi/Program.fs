@@ -3,8 +3,12 @@ namespace LiftLog.WebApi
 open Microsoft.AspNetCore.Builder
 open Microsoft.Extensions.DependencyInjection
 open Microsoft.Extensions.Hosting
+open Serilog
+open Serilog.Debugging
+open Serilog.Events
 
 module Program =
+    [<Literal>]
     let exitCode = 0
 
     [<EntryPoint>]
@@ -27,6 +31,22 @@ module Program =
         app.UseAuthorization()
         app.MapControllers()
 
-        app.Run()
+        builder.Host.UseSerilog()
+        Log.Logger = LoggerConfiguration()
+                         .ReadFrom.Configuration(builder.Configuration)
+                         .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                         .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+                         .Enrich.FromLogContext()
+                         .WriteTo.Console()
+                         .CreateLogger()
+        SelfLog.Enable(System.Console.Error)
 
-        exitCode
+        let appVersion = builder.Configuration["AppVersion"]
+        try
+            Log.Information("Starting web host. AppVersion: {AppVersion}", appVersion)
+            
+            app.Run()
+            exitCode
+        with ex ->
+            Log.Fatal(ex, "Host terminated unexpectedly. AppVersion: {AppVersion}", appVersion)
+            -1
