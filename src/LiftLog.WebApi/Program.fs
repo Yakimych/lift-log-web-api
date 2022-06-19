@@ -23,14 +23,16 @@ module Program =
         let builder = WebApplication.CreateBuilder(args)
 
         builder.Services.AddControllers()
+        builder.Services.AddCors()
         builder.Services.AddSwaggerGen()
 
         let app = builder.Build()
-
+        
         app.UseSwagger()
         app.UseSwaggerUI()
         app.UseHttpsRedirection()
 
+        app.UseCors(fun x -> x.AllowAnyHeader().AllowAnyMethod().AllowAnyOrigin() |> ignore)
         app.UseAuthorization()
         app.MapControllers()
 
