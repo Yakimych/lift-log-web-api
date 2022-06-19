@@ -19,6 +19,16 @@ module Program =
         builder.Services.AddControllers()
         builder.Services.AddCors()
         builder.Services.AddSwaggerGen()
+        
+        builder.Host.UseSerilog()
+        Log.Logger = LoggerConfiguration()
+                         .ReadFrom.Configuration(builder.Configuration)
+                         .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+                         .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
+                         .Enrich.FromLogContext()
+                         .WriteTo.Console()
+                         .CreateLogger()
+        SelfLog.Enable(System.Console.Error)
 
         let app = builder.Build()
 
@@ -30,16 +40,6 @@ module Program =
         app.UseCors(fun x -> x.SetIsOriginAllowed(fun o -> o = frontendHost) |> ignore)
         app.UseAuthorization()
         app.MapControllers()
-
-        builder.Host.UseSerilog()
-        Log.Logger = LoggerConfiguration()
-                         .ReadFrom.Configuration(builder.Configuration)
-                         .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                         .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
-                         .Enrich.FromLogContext()
-                         .WriteTo.Console()
-                         .CreateLogger()
-        SelfLog.Enable(System.Console.Error)
 
         let appVersion = builder.Configuration["AppVersion"]
         try
