@@ -16,10 +16,6 @@ module Program =
 
         let builder = WebApplication.CreateBuilder(args)
 
-        builder.Services.AddControllers()
-        builder.Services.AddCors()
-        builder.Services.AddSwaggerGen()
-        
         builder.Host.UseSerilog()
         Log.Logger = LoggerConfiguration()
                          .ReadFrom.Configuration(builder.Configuration)
@@ -29,6 +25,10 @@ module Program =
                          .WriteTo.Console()
                          .CreateLogger()
         SelfLog.Enable(System.Console.Error)
+
+        builder.Services.AddControllers()
+        builder.Services.AddCors()
+        builder.Services.AddSwaggerGen()
 
         let app = builder.Build()
 
