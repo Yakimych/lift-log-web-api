@@ -5,13 +5,14 @@ open System.Net
 open Microsoft.AspNetCore.Mvc
 open Microsoft.Extensions.Configuration
 open LiftLog.Models
+open Microsoft.Extensions.Logging
 
 [<Route("api/[controller]")>]
 [<ApiController>]
-type LiftLogsController private () =
+type LiftLogsController private (logger: ILogger<LiftLogsController>) =
     inherit ControllerBase()
-    new (configuration: IConfiguration) as this =
-        LiftLogsController() then
+    new (configuration: IConfiguration, logger: ILogger<LiftLogsController>) as this =
+        LiftLogsController(logger) then
         this.Configuration <- configuration
 
     member private this.getMongoDbSettings () =
@@ -26,6 +27,7 @@ type LiftLogsController private () =
 
     [<HttpGet>]
     member this.GetAll (): ActionResult =
+        logger.LogInformation("GetAll called")
         let allLiftLogs = LiftLog.Service.getAll (this.getMongoDbSettings())
         this.Ok(allLiftLogs) :> _
 
