@@ -17,7 +17,7 @@ module Program =
         let builder = WebApplication.CreateBuilder(args)
 
         builder.Host.UseSerilog()
-        Log.Logger = LoggerConfiguration()
+        Log.Logger <- LoggerConfiguration()
                          .ReadFrom.Configuration(builder.Configuration)
                          .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                          .MinimumLevel.Override("Microsoft.AspNetCore", LogEventLevel.Warning)
