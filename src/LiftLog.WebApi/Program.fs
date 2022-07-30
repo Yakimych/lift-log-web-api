@@ -37,7 +37,8 @@ module Program =
         app.UseHttpsRedirection()
 
         let frontendHost = builder.Configuration["FrontendHost"]
-        app.UseCors(fun x -> x.SetIsOriginAllowed(fun o -> o = frontendHost).AllowAnyMethod() |> ignore)
+        app.UseCors(fun x ->
+            x.SetIsOriginAllowed(fun o -> o = frontendHost).AllowAnyMethod().AllowAnyHeader() |> ignore)
 
         Log.Information("Added CORS policy for origin {FrontendHost}", frontendHost)
 
