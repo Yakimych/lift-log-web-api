@@ -40,8 +40,6 @@ module Program =
         app.UseCors(fun x ->
             x.SetIsOriginAllowed(fun o -> o = frontendHost).AllowAnyMethod().AllowAnyHeader() |> ignore)
 
-        Log.Information("Added CORS policy for origin {FrontendHost}", frontendHost)
-
         app.UseAuthorization()
         app.MapControllers()
 
