@@ -36,15 +36,14 @@ module Program =
         app.UseSwaggerUI()
         app.UseHttpsRedirection()
 
-        let frontendHost = builder.Configuration["FrontendHost"]
-        app.UseCors(fun x -> x.SetIsOriginAllowed(fun o -> o = frontendHost) |> ignore)
+        app.UseCors(fun x -> x.SetIsOriginAllowed(fun o -> o = frontendHost).AllowAnyMethod() |> ignore)
         app.UseAuthorization()
         app.MapControllers()
 
         let appVersion = builder.Configuration["AppVersion"]
         try
             Log.Information("Starting web host. AppVersion: {AppVersion}", appVersion)
-            
+
             app.Run()
             exitCode
         with ex ->
