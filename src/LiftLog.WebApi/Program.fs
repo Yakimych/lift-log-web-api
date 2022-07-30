@@ -38,6 +38,9 @@ module Program =
 
         let frontendHost = builder.Configuration["FrontendHost"]
         app.UseCors(fun x -> x.SetIsOriginAllowed(fun o -> o = frontendHost).AllowAnyMethod() |> ignore)
+
+        Log.Information("Added CORS policy for origin {FrontendHost}", frontendHost)
+
         app.UseAuthorization()
         app.MapControllers()
 
