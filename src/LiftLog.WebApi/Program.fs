@@ -11,6 +11,9 @@ module Program =
     [<Literal>]
     let exitCode = 0
 
+    [<Literal>]
+    let allowFrontendHostPolicy = "_allowFrontendHost"
+
     [<EntryPoint>]
     let main args =
 
