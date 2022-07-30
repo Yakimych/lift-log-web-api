@@ -11,9 +11,6 @@ module Program =
     [<Literal>]
     let exitCode = 0
 
-    [<Literal>]
-    let allowFrontendHostPolicy = "_allowFrontendHost"
-
     [<EntryPoint>]
     let main args =
 
@@ -39,6 +36,7 @@ module Program =
         app.UseSwaggerUI()
         app.UseHttpsRedirection()
 
+        let frontendHost = builder.Configuration["FrontendHost"]
         app.UseCors(fun x -> x.SetIsOriginAllowed(fun o -> o = frontendHost).AllowAnyMethod() |> ignore)
         app.UseAuthorization()
         app.MapControllers()
