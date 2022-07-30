@@ -290,3 +290,6 @@ __pycache__/
 
 .terraform
 .terraform.lock.hcl
+
+.DS_Store
+backups
