@@ -13,6 +13,7 @@
     <Compile Include="Mapping.fs" />
     <Compile Include="LiftLogService.fs" />
     <Compile Include="LiftLogController.fs" />
+    <Compile Include="HealthCheckController.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

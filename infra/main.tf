@@ -125,7 +125,7 @@ resource "azurerm_application_insights_web_test" "liftlogwebtest" {
   configuration = <<XML
 <WebTest Name="Health Check ping" Id="45E9A843-3A90-456C-A402-A44E94CA66C3" Enabled="True" CssProjectStructure="" CssIteration="" Timeout="120" WorkItemIds="" xmlns="http://microsoft.com/schemas/VisualStudio/TeamTest/2010" Description="" CredentialUserName="" CredentialPassword="" PreAuthenticate="True" Proxy="default" StopOnError="False" RecordedResultFile="" ResultsLocale="">
   <Items>
-    <Request Method="GET" Guid="fbb64104-508e-4494-b994-2e1f4cd8c8fd" Version="1.1" Url="https://${var.webapp_name}.azurewebsites.net/healthcheck" ThinkTime="0" Timeout="120" ParseDependentRequests="False" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="200" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False" />
+    <Request Method="GET" Guid="fbb64104-508e-4494-b994-2e1f4cd8c8fd" Version="1.1" Url="https://${var.webapp_name}.azurewebsites.net/api/healthcheck" ThinkTime="0" Timeout="120" ParseDependentRequests="False" FollowRedirects="True" RecordResult="True" Cache="False" ResponseTimeGoal="0" Encoding="utf-8" ExpectedHttpStatusCode="200" ExpectedResponseUrl="" ReportingName="" IgnoreHttpStatusCode="False" />
   </Items>
 </WebTest>
   XML
